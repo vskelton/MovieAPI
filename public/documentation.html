@@ -87,27 +87,27 @@
             <!--Update user name-->
             <tr>
                 <td>Update a User Name</td>
-                <td>/users/:id</td>
+                <td>/users/:Username</td>
                 <td>Allows a user to update name and other info</td>
                 <td>PUT</td>
-                <td>user id (URL parameter)</td>
+                <td>Username (URL parameter)</td>
                 <td>JSON object with updated user info</td>
                 <td>Confirmation message</td>
             </tr>
             <!--Add movie to favorites-->
             <tr>
                 <td>Add a Favorite Movie</td>
-                <td>/users/:id/:MovieTitle</td>
+                <td>/users/:Username/movies/:MovieID</td>
                 <td>Allows a user to add a favorite movie</td>
                 <td>POST</td>
-                <td>user id (URL parameter)</td>
+                <td>username (URL parameter)</td>
                 <td>JSON object with movie title</td>
                 <td>Updated list of favorite movies</td>
             </tr>
             <!--Delete a user's favorite movie-->
             <tr>
                 <td>Remove a Movie From Favorites</td>
-                <td>/users/:id/:movieTitle</td>
+                <td>/users/:Username/movies/:MovieID</td>
                 <td>Allows a user to remove movies from the favorite list</td>
                 <td>DELETE</td>
                 <td>user id, movieTitle</td>
@@ -117,10 +117,10 @@
             <!--Deregister a user-->
             <tr>
                 <td>Delete a User</td>
-                <td>/users/:id</td>
+                <td>/users/:Username</td>
                 <td>Allows a user to be deleted</td>
                 <td>DELETE</td>
-                <td>user id (URL parameter</td>
+                <td>username (URL parameter</td>
                 <td>None</td>
                 <td>Confirmation or error message</td>
             </tr>
