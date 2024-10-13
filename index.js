@@ -15,6 +15,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+let auth = require('./auth')(app);
+
+const passport = require('passport');
+require('./passport');
+
     // Morgan middleware
     app.use(morgan('combined'));
 
@@ -97,7 +102,11 @@ await Users.findOne({ Username: req.body.Username })
 });
 
 // UPDATE
-app.put('/users/:Username', async (req, res) => {
+app.put('/users/:Username', passport.authenticate('jwt', { session: false}), async (req, res) => {
+    if(req.user.Username !== req.params.Username){
+        return res.status(400).sen('Permission denied');
+    }
+
     await Users.findOneAndUpdate({ Username: req.params.Username},
         { $set:
             {
@@ -132,7 +141,7 @@ app.post('/users/:Username/movies/:MovieID', async (req, res) => {
 });
 
 // READ
-app.get('/movies', async (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Movies.find()
         .then((movies) => {
             res.status(201).json(movies);
