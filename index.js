@@ -31,53 +31,6 @@ require('./passport');
 // Static request
 app.use(express.static('public'));
 
-let movies = [
-    { 
-        "Title": 'Top Gun', 
-        "Year": '1986',
-
-      "Director": {
-        "Name": 'Tony Scott'},
-
-      "Genre": {
-        "Name": 'Drama'},
-      },
-
-    { 
-        "Title": 'Jurassic Park',
-        "Year": '1993',
-
-      "Director": {
-        "Name": 'Steven Spielberg'},
-
-      "Genre":{
-        "Name": 'Science Fiction' },
-      },
-
-    { 
-        "Title": 'Pulp Ficton', 
-        "Year": '1994',
-
-      "Director": {
-        "Name": 'Quentin Tarantino'},
-
-      "Genre": {
-        "Name": 'Drama' },
-      }
-];
-
-let users = [
-    {
-        "id": 1,
-        "name": 'Jayden Smith',
-        "favoriteMovies": ['Jurassic Park']
-    },
-    {
-        "id": 2,
-        "name": 'Destiny Johnson',
-        "favoriteMovies": ['Top Gun']
-    },
-];
 
 // CREATE
 app.post('/users',
@@ -160,6 +113,11 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { sess
 });
 
 // READ
+
+app.get('/',(req, res) => {
+    res.send('Welcome to my Movie App!');
+});
+
 app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Movies.find()
         .then((movies) => {
