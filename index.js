@@ -47,6 +47,7 @@ app.post('/users',
         }
 
     let hashedPassword = Users.hashPassword(req.body.Password);
+    
     await Users.findOne({ Username: req.body.Username })
         .then((user) => {
             if (user) {
@@ -55,7 +56,7 @@ app.post('/users',
                 Users
                     .create({
                          Username: req.body.Username,
-                         Password: req.body.Password,
+                         Password: hashedPassword,
                         Email: req.body.Email,
                         Birthday: req.body.Birthday
                     })
@@ -63,7 +64,7 @@ app.post('/users',
                     .catch((error) => {
                         console.error(error);
                         res.status(500).send('Error: ' + error);
-                    })
+                    });
              }
         })
         .catch((error) => {

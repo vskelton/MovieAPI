@@ -25,7 +25,7 @@ passport.use(
                 }
                 if (!user.validatePassword(password)) {
                     console.log('incorrect password');
-                    return callback(null, false, { message: 'Inccorect passwor.'});
+                    return callback(null, false, { message: 'Incorect password.'});
                 }
                 console.log('finished');
                 return callback (null, user);
@@ -48,7 +48,7 @@ passport.use(new JWTStrategy({
     .then((user) => {
         return callback(null, user);
     })
-    .catch((eerror) => {
+    .catch((error) => {
         return callback(error)
     });
 }));
